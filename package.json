@@ -1,0 +1,18 @@
+{
+  "name": "hexalife",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bundle": "browserify main.js --standalone  hexa > dist/hexalife.js -t [ babelify --presets [ es2015 ] ]"
+  },
+  "author": "Muhammed Furkan Gungor",
+  "license": "ISC",
+  "dependencies": {
+    "babelify": "^7.3.0"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1"
+  }
+}
