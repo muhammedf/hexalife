@@ -1,20 +1,24 @@
 
 export default function Hexagon(isalive){
     var hex=document.createElement("div");
-    var top=document.createElement("div");
-    var middle=document.createElement("div");
-    var bottom=document.createElement("div");
     hex.classList.add("hex");
-    top.classList.add("top");
-    middle.classList.add("middle");
-    bottom.classList.add("bottom");
-    hex.appendChild(top);
-    hex.appendChild(middle);
-    hex.appendChild(bottom);
-    if(isalive) Array.from(hex.children).forEach(c=>c.classList.add("alive"));
+    if(isalive) hex.classList.add("alive");
+    else hex.classList.add("dead");
+    hex.onclick=onclick;
     return {hex, isalive, toString};
 
     function toString() {
         return isalive ? "1" : "0";
+    }
+
+    function onclick() {
+        if(this.classList.contains("alive")){
+            this.classList.remove("alive");
+            this.classList.add("dead");
+        }
+        else{
+            this.classList.remove("dead");
+            this.classList.add("alive");
+        }
     }
 }
