@@ -4,15 +4,19 @@ export default function Hexagon(isalive){
     hex.classList.add("hex");
     if(isalive) hex.classList.add("alive");
     else hex.classList.add("dead");
-    hex.onclick=onclick;
-    return {hex, isalive, toString};
+
+    hex.addEventListener("click", onclick);
+
+    var ret = {hex, isalive, toString};
+
+    return ret;
 
     function toString() {
-        return isalive ? "1" : "0";
+        return this.isalive ? "1" : "0";
     }
 
     function onclick() {
-        if(this.classList.contains("alive")){
+        if(ret.isalive){
             this.classList.remove("alive");
             this.classList.add("dead");
         }
@@ -20,5 +24,6 @@ export default function Hexagon(isalive){
             this.classList.remove("dead");
             this.classList.add("alive");
         }
+        ret.isalive=!ret.isalive;
     }
 }
