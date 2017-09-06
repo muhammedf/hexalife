@@ -26,7 +26,7 @@ export default function HexagonMap(rowc, colc){
 
         fill: function(id="container") {
             var root=document.getElementById(id);
-            if(!root) throw new DOMException("no element with id: "+id);
+            if(!root) throw "no element with id: "+id;
 
             for(var i = 0 ; i<rowc; i++){
                 var row=document.createElement("div");
