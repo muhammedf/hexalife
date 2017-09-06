@@ -3,13 +3,13 @@ import Hexagon from "./hexagon.js"
 export default function HexagonMap(rowc, colc){
 
     var hexagons = [];
-    var index = 0;
+
+    function add(hexagon) {
+        if(hexagons.length == rowc*colc) throw "Map is full!!";
+        hexagons.push(hexagon);
+    }
 
     return {
-
-        add: function (hexagon) {
-            hexagons[index++] = hexagon;
-        },
 
         get: function (row, col) {
             return hexagons[row * colc + col];
@@ -37,7 +37,7 @@ export default function HexagonMap(rowc, colc){
                 for(var j=0; j<colc; j++){
                     var hexagon=Hexagon(true);
                     row.appendChild(hexagon.hex);
-                    this.add(hexagon);
+                    add(hexagon);
                 }
                 root.appendChild(row);
             }
