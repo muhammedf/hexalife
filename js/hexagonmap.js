@@ -2,27 +2,23 @@ import Hexagon from "./hexagon.js"
 
 export default function HexagonMap(rowc, colc){
 
+    var hexagons = [];
+    var index = 0;
+
     return {
-        hexagons: [],
-        index: 0,
-        rowcount: rowc,
-        colcount: colc,
+
         add: function (hexagon) {
-            this.hexagons[this.index++] = hexagon;
+            hexagons[index++] = hexagon;
         },
+
         get: function (row, col) {
-            console.log(this.hexagons[row * this.width + col])
-            return this.hexagons[row * this.width + col];
+            return hexagons[row * colc + col];
         },
-        setDimensions: function (rowcount, colcount) {
-            this.rowcount = rowcount;
-            this.colcount = colcount;
-        },
+
         toString: function () {
-            console.log(this.colcount);
             var string = "\n";
-            for (var i = 0; i < this.rowcount; i++) {
-                string += this.hexagons.slice(i * this.colcount, (i + 1) * this.colcount).join(" ");
+            for (var i = 0; i < rowc; i++) {
+                string += hexagons.slice(i * colc, (i + 1) * colc).join(" ");
                 string += "\n";
             }
             return string;
@@ -32,13 +28,13 @@ export default function HexagonMap(rowc, colc){
             var root=document.getElementById(id);
             if(!root) throw new DOMException("no element with id: "+id);
 
-            for(var i = 0 ; i<this.rowcount; i++){
+            for(var i = 0 ; i<rowc; i++){
                 var row=document.createElement("div");
                 row.classList.add("hex-row");
                 if(i%2==1){
                     row.classList.add("even");
                 }
-                for(var j=0; j<this.colcount; j++){
+                for(var j=0; j<colc; j++){
                     var hexagon=Hexagon(true);
                     row.appendChild(hexagon.hex);
                     this.add(hexagon);
