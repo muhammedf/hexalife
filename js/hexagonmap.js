@@ -47,7 +47,7 @@ export default function HexagonMap(rowc, colc, edge_length=30, space_between_hex
         },
 
         set_edge_length: function (length) {
-            modify_edge($root, length);
+            modify_edge($root, length, space_between_hexes);
             edge_length = length;
         }
     }

@@ -13,7 +13,7 @@ var height;
 /*
 margin-left of hex class
  */
-var space;
+var space = _space;
 /*
 margin-left of .hex-row.even
  */
@@ -26,7 +26,6 @@ var mbthe;
 edge = _edge;
 width = edge * Math.sqrt(3);
 height = edge * 2;
-space = 3;
 mlhe = width / 2 + space / 2;
 mbthe = - edge / 2 + space / 2;
 
