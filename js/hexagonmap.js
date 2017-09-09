@@ -1,8 +1,13 @@
 import Hexagon from "./hexagon.js"
+import modify_edge from "./css-modifier"
 
-export default function HexagonMap(rowc, colc){
+export default function HexagonMap(rowc, colc, edge_length=30, space_between_hexes=3, rootid="container"){
 
     var hexagons = [];
+    var $root;
+
+    $root=document.getElementById(rootid);
+    if(!$root) throw "no element with id: "+rootid;
 
     function add(hexagon) {
         if(hexagons.length == rowc*colc) throw "Map is full!!";
@@ -24,10 +29,7 @@ export default function HexagonMap(rowc, colc){
             return string;
         },
 
-        fill: function(id="container") {
-            var root=document.getElementById(id);
-            if(!root) throw "no element with id: "+id;
-
+        fill: function() {
             for(var i = 0 ; i<rowc; i++){
                 var row=document.createElement("div");
                 row.classList.add("hex-row");
@@ -39,8 +41,14 @@ export default function HexagonMap(rowc, colc){
                     row.appendChild(hexagon.hex);
                     add(hexagon);
                 }
-                root.appendChild(row);
+                $root.appendChild(row);
             }
+            this.set_edge_length(edge_length);
+        },
+
+        set_edge_length: function (length) {
+            modify_edge($root, length);
+            edge_length = length;
         }
     }
 
