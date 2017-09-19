@@ -7,7 +7,7 @@ export default function Hexagon(isalive){
 
     hex.addEventListener("click", onclick);
 
-    var ret = {hex, isalive, toString};
+    var ret = {hex, isalive, toString, die, revive, isInEvenRow};
 
     return ret;
 
@@ -17,13 +17,25 @@ export default function Hexagon(isalive){
 
     function onclick() {
         if(ret.isalive){
-            this.classList.remove("alive");
-            this.classList.add("dead");
+            ret.die();
         }
         else{
-            this.classList.remove("dead");
-            this.classList.add("alive");
+            ret.revive();
         }
-        ret.isalive=!ret.isalive;
+    }
+
+    function die(){
+        this.hex.classList.remove("alive");
+        this.hex.classList.add("dead");
+        this.isalive=false;
+    }
+    function revive() {
+        this.hex.classList.remove("dead");
+        this.hex.classList.add("alive");
+        this.isalive=true;
+    }
+
+    function isInEvenRow() {
+        return this.hex.parentNode.classList.contains("even");
     }
 }
