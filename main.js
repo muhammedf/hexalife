@@ -1,3 +1,5 @@
+require("babel-polyfill");
+
 import hexagonMap from "./js/hexagonmap.js";
 
 // module.exports = {???: ??????????};
