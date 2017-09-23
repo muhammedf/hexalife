@@ -1,15 +1,11 @@
-import {rule1} from "./Rules"
+import Ruler from "./Rules"
 
-export default function Simulation(hexagonmap) {
+export default function Simulation(hexagonmap, ruler=Ruler()) {
 
     var iterating=false;
 
     function iterate() {
-        var funcs=[];
-        for(let hex of hexagonmap.iterator()){
-            funcs.push(rule1.apply(hex, hexagonmap.getNeighboursOf(hex).filter(n=>n.isalive).length));
-        }
-        funcs.filter(f=>f!==undefined).forEach(f=>f());
+        ruler.apply(hexagonmap);
     }
 
     return {

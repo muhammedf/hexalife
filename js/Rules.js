@@ -1,20 +1,49 @@
 
-export var rule1={
-  apply: function (hex, aliveNeiCount) {
-      if(hex.isalive){
-          if(this.die(aliveNeiCount)){
-              return ()=>hex.die();
-          }
-      }
-      else if(this.born(aliveNeiCount)){
-          return ()=>hex.born();
-      }
-      return undefined;
-  },
-  die: function (aliveNeiCount) {
-      return aliveNeiCount<3 || aliveNeiCount>4;
-  },
-  born: function (aliveNeiCount) {
-      return aliveNeiCount==2;
-  }
-};
+export default function Ruler(rules) {
+
+    if(rules===undefined){
+        rules={
+            0: [
+                {neiState: [4], nextState: 1}
+                ],
+            1: [
+                {neiState: [1,2,3,4,6], nextState: 2},
+                {neiState: [5], nextState: 0}
+                ],
+            2: [
+                {neiState: [4], nextState: 1},
+                {neiState: [0,3,5,6], nextState: 0}
+                ]
+        }
+    }
+
+    return {
+        apply: function (hexagonmap) {
+            var funcs=[];
+            for(let hex of hexagonmap.iterator()){
+                funcs.push(apply(hex, hexagonmap.getNeighboursOf(hex).map(n=>n.getState()).reduce((a,b)=>a+b)));
+            }
+            funcs.filter(f=>f!==undefined).forEach(f=>f());
+        }
+    };
+
+    function apply(hex, neiState){
+
+        var ruleset=rules[hex.getState()];
+
+        if(ruleset){
+            var rule = ruleset.filter(rs=>rs.neiState.includes(neiState));
+            if(rule.length===1)
+                rule=rule[0];
+            else if(rule.length===0)
+                return undefined;
+            else throw "more than one rule for a spesific state";
+
+            return ()=> hex.setState(rule.nextState);
+        }
+
+        return undefined;
+
+    }
+
+}

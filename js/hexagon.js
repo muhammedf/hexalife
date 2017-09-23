@@ -7,7 +7,9 @@ export default function Hexagon(isalive){
 
     hex.addEventListener("click", onclick);
 
-    var ret = {hex, isalive, toString, die, born, isInEvenRow};
+    var ret = {hex, isalive, toString, die, born, isInEvenRow, getState, setState};
+
+    var state = isalive ? 1 : 0;
 
     return ret;
 
@@ -17,10 +19,10 @@ export default function Hexagon(isalive){
 
     function onclick() {
         if(ret.isalive){
-            ret.die();
+            ret.setState(0);
         }
         else{
-            ret.born();
+            ret.setState(1);
         }
     }
 
@@ -37,5 +39,19 @@ export default function Hexagon(isalive){
 
     function isInEvenRow() {
         return this.hex.parentNode.classList.contains("even");
+    }
+    
+    function getState() {
+        return state;
+    }
+
+    function setState(s){
+        state=s;
+        if(!this.isalive && state>0){
+            this.born();
+        }
+        else if(this.isalive && state<1){
+            this.die();
+        }
     }
 }
