@@ -7,7 +7,7 @@ export default function Hexagon(isalive){
 
     hex.addEventListener("click", onclick);
 
-    var ret = {hex, isalive, toString, die, revive, isInEvenRow};
+    var ret = {hex, isalive, toString, die, born, isInEvenRow};
 
     return ret;
 
@@ -29,7 +29,7 @@ export default function Hexagon(isalive){
         this.hex.classList.add("dead");
         this.isalive=false;
     }
-    function revive() {
+    function born() {
         this.hex.classList.remove("dead");
         this.hex.classList.add("alive");
         this.isalive=true;

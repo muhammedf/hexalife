@@ -7,7 +7,6 @@ export default function Simulation(hexagonmap) {
     function iterate() {
         var funcs=[];
         for(let hex of hexagonmap.iterator()){
-            console.log("for");
             funcs.push(rule1.apply(hex, hexagonmap.getNeighboursOf(hex).filter(n=>n.isalive).length));
         }
         funcs.filter(f=>f!==undefined).forEach(f=>f());

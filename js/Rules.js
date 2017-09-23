@@ -6,15 +6,15 @@ export var rule1={
               return ()=>hex.die();
           }
       }
-      else if(this.revive(aliveNeiCount)){
-          return ()=>hex.revive();
+      else if(this.born(aliveNeiCount)){
+          return ()=>hex.born();
       }
       return undefined;
   },
   die: function (aliveNeiCount) {
       return aliveNeiCount<3 || aliveNeiCount>4;
   },
-  revive: function (aliveNeiCount) {
+  born: function (aliveNeiCount) {
       return aliveNeiCount==2;
   }
 };
