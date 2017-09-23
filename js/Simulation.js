@@ -1,4 +1,4 @@
-import Ruler from "./Rules"
+import Ruler from "./Ruler"
 
 export default function Simulation(hexagonmap, ruler=Ruler()) {
 
