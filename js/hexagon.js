@@ -20,7 +20,7 @@ export default function Hexagon(isalive){
             ret.die();
         }
         else{
-            ret.revive();
+            ret.born();
         }
     }
 
