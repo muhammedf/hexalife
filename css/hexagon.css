@@ -23,6 +23,7 @@ s = space between hexagons (margin-left of hex)
 
 .hex-row {
     clear: left;
+    height: 60px;
 }
 
 /*

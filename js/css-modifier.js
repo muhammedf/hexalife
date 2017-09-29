@@ -28,10 +28,11 @@ width = edge * Math.sqrt(3);
 height = edge * 2;
 space = _space;
 mlhe = width / 2 + space / 2;
-mbthe = - edge / 2 + space / 2;
+mbthe = - edge/2 + space / 2 * Math.sqrt(3);
 
 Array.from($root.getElementsByClassName("hex")).forEach(hex);
 Array.from($root.getElementsByClassName("hex-row even")).forEach(hex_row_even);
+Array.from($root.getElementsByClassName("hex-row")).forEach(hex_row);
 
 function hex($hex){
     $hex.style["width"] = width + "px";
@@ -43,6 +44,10 @@ function hex_row_even($hex_row_even){
     $hex_row_even.style["margin-left"] = mlhe + "px";
     $hex_row_even.style["margin-bottom"] = mbthe + "px";
     $hex_row_even.style["margin-top"] = mbthe + "px";
+}
+
+function hex_row($hex_row) {
+    $hex_row.style["height"] = height + "px";
 }
 
 }
