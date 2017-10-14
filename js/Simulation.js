@@ -1,8 +1,9 @@
 import Ruler from "./Ruler"
 
-export default function Simulation(hexagonmap, ruler=Ruler()) {
+export default function Simulation(hexagonmap, freq=1 /*hertz*/, ruler=Ruler()) {
 
     var iterating=false;
+    var delay=1000/freq;
 
     function iterate() {
         ruler.apply(hexagonmap);
@@ -21,7 +22,7 @@ export default function Simulation(hexagonmap, ruler=Ruler()) {
         iterate: function () {
             iterate();
             if(iterating===true){
-                setTimeout(()=>this.iterate(), 1000);
+                setTimeout(()=>this.iterate(), delay);
             }
         }
     };

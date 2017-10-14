@@ -1,6 +1,8 @@
 require("babel-polyfill");
 
-import hexagonMap from "./js/hexagonmap.js";
+import HexagonMap from "./js/hexagonmap.js";
+import Simulation from "./js/Simulation"
 
 // module.exports = {???: ??????????};
-window.HexagonMap = hexagonMap;
+window.HexagonMap = HexagonMap;
+window.Simulation = Simulation
