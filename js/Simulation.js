@@ -1,9 +1,10 @@
 import Ruler from "./Ruler"
 
-export default function Simulation(hexagonmap, freq=1 /*hertz*/, ruler=Ruler()) {
+export default function Simulation(hexagonmap, freq=1 /*hertz*/, ruleset) {
 
     var iterating=false;
     var delay=1000/freq;
+    var ruler=Ruler(ruleset);
 
     function iterate() {
         ruler.apply(hexagonmap);

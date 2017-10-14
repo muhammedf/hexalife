@@ -1,21 +1,5 @@
 
-export default function Ruler(rules) {
-
-    if(rules===undefined){
-        rules={
-            0: [
-                {neiState: [4], nextState: 1}
-                ],
-            1: [
-                {neiState: [1,2,3,4,6], nextState: 2},
-                {neiState: [5], nextState: 0}
-                ],
-            2: [
-                {neiState: [4], nextState: 1},
-                {neiState: [0,3,5,6], nextState: 0}
-                ]
-        }
-    }
+export default function Ruler(rules = rule_set_1) {
 
     return {
         apply: function (hexagonmap) {
@@ -46,4 +30,18 @@ export default function Ruler(rules) {
 
     }
 
+}
+
+var rule_set_1={
+    0: [
+        {neiState: [4], nextState: 1}
+    ],
+    1: [
+        {neiState: [1,2,3,4,6], nextState: 2},
+        {neiState: [5], nextState: 0}
+    ],
+    2: [
+        {neiState: [4], nextState: 1},
+        {neiState: [0,3,5,6], nextState: 0}
+    ]
 }
